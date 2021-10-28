@@ -9,7 +9,7 @@ module Almanack
         name = basename(name)
         path = settings.root.join(within)
         available = Pathname.glob(path.join("*"))
-        asset = available.find { |path| basename(path) == name }
+        asset = available.find { |p| basename(p) == name }
         raise "Could not find stylesheet #{name} inside #{available}" if asset.nil?
         asset
       end
@@ -21,7 +21,7 @@ module Almanack
       end
 
       def auto_render_asset(*args)
-        auto_render_template locate_asset(*args)
+        auto_render_template locate_asset(args[0], within: args[1][:within])
       end
 
       def theme_stylesheet_path
