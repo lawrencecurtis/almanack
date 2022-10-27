@@ -21,8 +21,8 @@ module Almanack
         respond_to?(renderer) ? send(renderer, content) : content
       end
 
-      def auto_render_asset(*args)
-        auto_render_template locate_asset(args)
+      def auto_render_asset(name, within)
+        locate_asset(name, within: within[:within])
       end
 
       def theme_stylesheet_path
