@@ -22,7 +22,7 @@ module Almanack
       end
 
       def auto_render_asset(name, within)
-        auto_render_template locate_asset(name, within: within[:within])
+        SassC::Engine.new(locate_asset(name, within: within[:within]).read).render
       end
 
       def theme_stylesheet_path
